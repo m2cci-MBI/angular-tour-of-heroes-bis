@@ -29,11 +29,11 @@ export class HeroService {
 
   /** GET hero by id. Will 404 if id not found */
   /* MBI - important: it works on the principle that most APIs accept a request of the type: url/:id */
-  getHero(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/${id}`;
+  getHero(name: string): Observable<Hero> {
+    const url = `${this.heroesUrl}/${name}`;
     return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Hero>(`getHero id=${id}`))
+      tap(_ => this.log(`fetched hero name=${name}`)),
+      catchError(this.handleError<Hero>(`getHero name=${name}`))
     );
   }
 
