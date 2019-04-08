@@ -16,12 +16,12 @@ import { HeroService } from '../hero.service';
 })
 export class HeroSearchComponent implements OnInit {
   heroes$: Observable<Hero[]>;
-  private searchTerms = new Subject<string>();
+  private searchTerms = new Subject<number>();
 
   constructor(private heroService: HeroService) {}
 
   // Push a search term into the observable stream.
-  search(term: string): void {
+  search(term: number): void {
     this.searchTerms.next(term);
   }
 
@@ -34,7 +34,7 @@ export class HeroSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.heroService.searchHeroes(term)),
+      switchMap((term: number) => this.heroService.searchHeroes(term)),
     );
   }
 }
