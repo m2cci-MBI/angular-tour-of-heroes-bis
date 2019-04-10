@@ -31,8 +31,9 @@ export class HeroService {
   /* MBI - important: it works on the principle that most APIs accept a request of the type: url/:id */
   getHero(name: string): Observable<Hero> {
     const url = `${this.heroesUrl}/${name}`;
+    console.log(name);
     return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log(`fetched hero name=${name}`)),
+      tap(_ => this.log(`fetched hero name='${name}'`)),
       catchError(this.handleError<Hero>(`getHero name=${name}`))
     );
   }
